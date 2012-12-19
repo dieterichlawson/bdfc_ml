@@ -1,0 +1,35 @@
+require 'configliere'
+Settings.use :commandline
+
+require_relative '../rake_helper'
+
+Settings.define :local_scratch, description: "Place where files can be temporarily stored locally"
+Settings.resolve!
+
+Pathname.register_paths(
+  orig: [Settings.orig_data_root, 'orig'],
+  raw: [Settings.result_data_root, 'raw'],
+
+  bts_flights_orig: [:orig,'www.transtats.bts.gov','flights'],
+  noaa_isd_orig: [:orig, 'www1.ncdc.noaa.gov','pub','data','noaa'],
+
+  noaa_isd_raw: [:raw, 'noaa_isd']
+  bts_flights_raw: [:raw, 'bts_flights']
+)
+
+namespace :download do
+  desc 'Download the NOAA ISD-Lite weather dataset from 1987 to 2012 and uplaod it to the HDFS'
+  task :noaa do
+   `./download_noaa.rb -v --out_dir=#{Pathname.of :noaa_isd_orig}`
+  end
+  desc 'Download the BTS flight dataset from 1987 to 2012 and upload it to the HDFS'
+  task :bts do
+    `./download_bts.rb -p --out_dir=#{Settings.local_scratch} --hdfs_out=#{Pathname.of :bts_flights_raw}`
+  end
+end
+namespace :extract do
+  desc 'Transform the NOAA ISD-Lite weather data from a flat file to a tab-delimited file'
+  task :noaa do
+    #TODO
+  end
+end

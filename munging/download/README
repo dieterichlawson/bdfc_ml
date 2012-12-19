@@ -1,0 +1,4 @@
+Contains scripts for downloading the raw versions of the NOAA ISD-Lite dataset
+and the BTS Flight delay dataset.
+
+I don't remember how the WBANS file was created.
