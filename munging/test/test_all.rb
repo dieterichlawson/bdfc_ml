@@ -39,12 +39,12 @@ end
 
 puts 'Testing the discretizer...'
 (1..SPLITS).each do |num|
-  `cat data/orig/part_#{num} | ../discretize/discretize.rb --local --info_file=/Users/dlaw/Desktop/bdfc_ml/munging/test/data/orig/dataset.info --map > data/discretized/mapoutput_#{num}`
+  `cat data/orig/part_#{num} | ../discretize/discretize.rb --local --info_file=/Users/dlaw/Desktop/bdfc/bdfc_ml/munging/test/data/orig/dataset.info --map > data/discretized/mapoutput_#{num}`
 end
 
 puts 'Testing the normalizer...'
 (1..SPLITS).each do |num|
-  `cat data/orig/part_#{num} | ../normalize/normalize.rb --local --info_file=/Users/dlaw/Desktop/bdfc_ml/munging/test/data/orig/dataset.info --map > data/normalized/mapoutput_#{num}`
+  `cat data/orig/part_#{num} | ../normalize/normalize.rb --local --info_file=/Users/dlaw/Desktop/bdfc/bdfc_ml/munging/test/data/orig/dataset.info --map > data/normalized/mapoutput_#{num}`
 end
 
 puts 'Checking normalizer\'s work...'

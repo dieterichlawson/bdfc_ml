@@ -1,0 +1,11 @@
+MODEL_DIR=/user/dlaw/rforest_mia
+
+hdp-rm -r $MODEL_DIR
+hadoop jar $MAHOUT_HOME/examples/target/mahout-examples-0.7-job.jar \
+   org.apache.mahout.classifier.df.mapreduce.BuildForest \
+  -Dmapred.max.split.size=10555032 \
+  -Dmapred.min.split.size=10555032 \
+  -d /data/small/cities/mia_train \
+  -ds /data/small/cities/mia_train.info \
+  --output $MODEL_DIR \
+  -p -t 125

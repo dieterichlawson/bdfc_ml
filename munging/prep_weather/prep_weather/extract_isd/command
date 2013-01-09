@@ -1,0 +1,9 @@
+/usr/lib/hadoop-0.20/bin/hadoop   \
+    jar /usr/lib/hadoop-0.20/contrib/streaming/hadoop-*streaming*.jar   \
+    -D mapred.reduce.tasks=75   \
+    -D mapred.job.name='extract_isd.rb---/data/noaa/with_wban---/data/noaa/tsv'  \
+    -mapper  '/usr/bin/ruby1.9.2-p290 extract_isd.rb --map --log_interval=10000 --log_seconds=30'   \
+    -reducer 'tee'   \
+    -input   '/data/noaa/with_wban'  \
+    -output  '/data/noaa/tsv'   \
+    -file    '/home/dlaw/weather/prep_weather/extract_isd.rb'

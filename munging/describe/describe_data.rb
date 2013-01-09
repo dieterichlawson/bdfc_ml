@@ -64,7 +64,7 @@ module DescribeData
     end
 
     def finalize 
-      yield @reducer.finalize.to_json
+      yield [@reducer.finalize.to_json]
     end
   end
 end

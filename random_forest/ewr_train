@@ -1,0 +1,13 @@
+NUM_TREES=1000
+MODEL_DIR=ewr_rforest_$NUM_TREES
+echo "Training $NUM_TREES trees"
+echo "Storing models in $MODEL_DIR"
+export HADOOP_OPTS="-XX:+UseParallelGC -mx6g"
+hadoop jar $MAHOUT_HOME/examples/target/mahout-examples-0.7-job.jar \
+   org.apache.mahout.classifier.df.mapreduce.BuildForest \
+  -Dmapred.max.split.size=12617884 \
+  -Dmapred.min.split.size=12617884 \
+  -d /data/small/cities/ewr_train \
+  -ds /data/small/cities/ewr_train.info \
+  --output $MODEL_DIR \
+  -p -t $NUM_TREES

@@ -1,0 +1,7 @@
+hdp-rm -r /user/dlaw/predictions
+hadoop jar $MAHOUT_HOME/examples/target/mahout-examples-0.7-job.jar \
+   org.apache.mahout.classifier.df.mapreduce.TestForest \
+  -i /data/sfo_df/test \
+  -ds /data/sfo_df/all.info \
+  -m /usr/dlaw/rforest_sfo \
+  -a -mr -o sfo_predictions

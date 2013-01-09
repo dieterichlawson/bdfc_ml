@@ -6,7 +6,7 @@ module Munging
       @categories = {}
       @column_types.each_with_index do |type,index|
         next unless type == :category
-        num_categories = Random.rand(10..24)
+        num_categories = 10 + Random.rand(14)
         @categories[index] = []
         (1..num_categories).each do
           category = (1..3).map { ('A'..'Z').to_a[rand(26)] }.join

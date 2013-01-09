@@ -1,0 +1,8 @@
+/usr/lib/hadoop-0.20/bin/hadoop   \
+  jar /usr/lib/hadoop-0.20/contrib/streaming/hadoop-*streaming*.jar   \
+  -D mapred.reduce.tasks=75  \
+  -D mapred.job.name='DA TUMBLER' \
+  -mapper  'tee'  \
+  -reducer 'tee'   \
+  -input   '/data/noaa/with_wban'   \
+  -output  '/data/noaa/with_wban_tumbled'   \

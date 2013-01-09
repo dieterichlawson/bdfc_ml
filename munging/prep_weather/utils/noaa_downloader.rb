@@ -6,7 +6,7 @@ require 'configliere'
 require 'set'
 
 NOAA_URL = 'http://www1.ncdc.noaa.gov/pub/data/noaa/isd-lite'
-WBANS_FILE = './wbans'
+WBANS_FILE = '/home/dlaw/weather/wbans'
 
 Settings.use :commandline
 
@@ -17,7 +17,7 @@ Settings({
   un_gzip: false,
 })
 
-Settings.define :years, flag: 'y', description: "Years to download", type: Array
+Settings.define :years, flag: 'y', description: "Years to download",type: Array
 Settings.define :station, description: "Station to download", default: ""
 Settings.define :verbose, flag: 'v', description: "Get chatty", type: :boolean
 Settings.define :un_gzip, flag: 'g', description: "Unzip the files as they are uploaded", type: :boolean

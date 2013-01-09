@@ -1,0 +1,10 @@
+MODEL_DIR=/usr/dlaw/rforest_sfo
+hdp-rm -r $MODEL_DIR
+hadoop jar $MAHOUT_HOME/examples/target/mahout-examples-0.7-job.jar \
+   org.apache.mahout.classifier.df.mapreduce.BuildForest \
+  -Dmapred.max.split.size=19449587 \
+  -Dmapred.min.split.size=19449587 \
+  -d /data/sfo_df/train \
+  -ds /data/sfo_df/all.info \
+  --output $MODEL_DIR \
+  -p -t 100 

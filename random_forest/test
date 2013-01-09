@@ -1,0 +1,12 @@
+CITY=ewr
+NUM_TREES=1000
+export HADOOP_OPTS="-XX:+UseParallelGC -mx6g"
+export HADOOP_DATANODE_OPTS="-Xmx10g"
+echo "Testing city $CITY with $NUM_TREES trees"
+hdp-rm -r /user/dlaw/predictions_${CITY}_${NUM_TREES}
+hadoop jar $MAHOUT_HOME/examples/target/mahout-examples-0.7-job.jar \
+   org.apache.mahout.classifier.df.mapreduce.TestForest \
+  -i /data/small/cities/${CITY}_test  \
+  -ds /data/small/cities/${CITY}_train.info \
+  -m /user/dlaw/${CITY}_rforest_${NUM_TREES}/forest.seq \
+  -a -mr -o predictions_${CITY}_${NUM_TREES}

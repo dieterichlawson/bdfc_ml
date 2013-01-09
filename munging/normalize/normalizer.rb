@@ -11,10 +11,10 @@ module Munging
 
     def normalize example
       @data_info[:number].each do |col|
-        index = col['index']
+        index = col[:index]
         val = example[index].to_f
-        val = val - col['mean']
-        val = val / col['std_dev']
+        val = val - col[:mean]
+        val = val / col[:std_dev]
         example[index] = val
       end
       example

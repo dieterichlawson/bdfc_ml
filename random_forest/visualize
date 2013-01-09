@@ -1,0 +1,8 @@
+export HADOOP_OPTS="-XX:+UseParallelGC -mx12g"
+export HADOOP_HEAPSIZE=12288
+hadoop jar $MAHOUT_HOME/examples/target/mahout-examples-0.7-job.jar \
+   org.apache.mahout.classifier.df.tools.ForestVisualizer \
+  -ds /data/small/cities/mia_train.info \
+  -m /user/dlaw/rforest_mia/forest.seq  \
+  --names DEP_YEAR DEP_MONTH DEP_DAY DEP_DOW DEP_HR DEST_AIRPORT SCHED_ELAPSED_TIME CARRIER DISTANCE PREV_ARR_DELAY ORIG_PRESSURE ORIG_WIND_SPEED ORIG_SKY_COND ORIG_PRECIP_HR ORIG_PRECIP_SIXHR DEST_PRESSURE DEST_WIND_SPEED DEST_SKY_COND DEST_PRECIP_HR DEST_PRECIP_SIXHR DEP_DELAY DEP_DELAY_15 DEP_DELAY_GROUP \
+|  grep '^[A-Z]'  | awk '{print $1}' | uniq | sort | uniq -c | sort -n -k 1

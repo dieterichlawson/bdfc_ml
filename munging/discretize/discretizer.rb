@@ -21,9 +21,9 @@ module Munging
       NUM_CATEGORIES.keys.each do |type|
         next unless col_info.include? type
         col_info[type].each do |col|
-          feature = col['index']
-          min = col['min']
-          max = col['max']
+          feature = col[:index]
+          min = col[:min]
+          max = col[:max]
           range = max - min
           width = range / NUM_CATEGORIES[type]
           boundaries = []

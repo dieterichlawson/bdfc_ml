@@ -1,0 +1,5 @@
+hadoop jar $MAHOUT_HOME/core/target/mahout-core-0.7-job.jar \
+    org.apache.mahout.classifier.df.tools.Describe \
+  -p /data/sfo_df/all \
+  -f /data/sfo_df/all.info \
+  -d "C C C C C I C C C C C I C N C N N N N N C N C N N N N N C N C N N I L I"

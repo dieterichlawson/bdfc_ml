@@ -1,0 +1,5 @@
+hadoop jar $MAHOUT_HOME/core/target/mahout-core-0.7-job.jar \
+    org.apache.mahout.classifier.df.tools.Describe \
+  -p /data/small/cities/mia_train \
+  -f /data/small/cities/mia_train.info \
+  -d "C C C C C C N C N N N N C N N N N C N N I L I"

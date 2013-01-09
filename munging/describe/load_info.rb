@@ -12,8 +12,8 @@ module LoadDatasetDescription
     end
     description = []
     data.each_line do |line|
-      col = JSON.parse line
-      index = col.delete 'index'
+      col = JSON.parse line, symbolize_names: true
+      index = col.delete :index
       description.insert index, col
     end
     description
@@ -27,8 +27,8 @@ module LoadDatasetDescription
     end
     description = {}
     data.each_line do |line|
-      col = JSON.parse line
-      type = col.delete('type').to_sym
+      col = JSON.parse line, symbolize_names: true
+      type = col.delete(:type).to_sym
       description[type] ||= []
       description[type] << col
     end
