@@ -2,15 +2,13 @@ This folder contains directories of scripts used to prepare the final joined
 flight-delay/weather dataset.
 
 Directories:
-  columns      - Contains ruby code describing the placement and types of columns. Different
-                 files represent different configurations of the data.
+  columns      - Contains ruby code describing the placement and types of columns. Different files represent different configurations of the data.
  
   download     - Scripts for fetching the datasets from the web and uploading them to a HDFS
   prep_flights - Prepares BTS's flight delay data for joining with NOAA weather data.
   prep_weather - Prepares the NOAA weather dataset for joining with the BTS flight data
   join         - Joins NOAA's ISD-lite and BTS's flight delay data
   
-  describe     - Wukong scripts for gathering statistics (mean, standard deviation, etc... ) 
-                 about datasets
+  describe     - Wukong scripts for gathering statistics (mean, standard deviation, etc... ) about datasets
   normalize    - Transforms numeric columns so that their means are 0 and variance is 1
   discretize   - Turns real-valued variables into categorical ones
