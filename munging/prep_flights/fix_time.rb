@@ -113,7 +113,6 @@ module FixTime
     rescue StandardError => e
       $stderr.write "Error during process: '#{e}'\n"
       $stderr.write "Line: '#{line}'\n"
-      yield line[ORIGIN_AIRPORT]
     end
   end
 end

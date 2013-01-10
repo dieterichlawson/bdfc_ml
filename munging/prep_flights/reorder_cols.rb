@@ -29,6 +29,7 @@ module ColumnReorderer
       result << line[DISTANCE] 
       result << line[ARR_DELAY] 
       result << line[DEP_DELAY..DEP_DELAY_GROUP]
+      # group on the date and tail number of the plane
       yield ["#{line[YEAR]}-#{line[MONTH]}-#{line[DAY]}-#{line[TAIL_NUM]}",result.flatten]
     end
   end
