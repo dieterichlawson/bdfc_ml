@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+$:.unshift "/home/dlaw/dev/wukong_og/lib"
+$:.unshift "/home/dlaw/dev/gorillib/lib"
+
 require 'wukong'
 require 'wukong/streamer/encoding_cleaner'
 
