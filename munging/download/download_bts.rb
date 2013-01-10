@@ -61,7 +61,7 @@ if Settings.local and Settings.out_dir = '/data/origin/www.transtats.bts.gov'
   Settings.out_dir = Dir.pwd
 end
 
-mkdir_unless_exists Settings.tmp_dir, Settings.local
+mkdir_unless_exists Settings.tmp_dir
 
 Settings.years.each do |year|
   out_dir = Settings.out_dir + "/#{year}"
