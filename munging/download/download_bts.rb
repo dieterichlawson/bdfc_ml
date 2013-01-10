@@ -5,7 +5,7 @@ Settings.use :commandline
 
 Settings.define :years, flag: 'y', description: 'Years to retrieve', type: Array, default: YEARS
 Settings.define :months, flag: 'm', description: "Months to retrieve", type: Array, default: MONTHS
-Settings.define :out_dir, flag: 'o', description: "Directory to put files in", default: File.dirname(__FILE__)
+Settings.define :out_dir, flag: 'o', description: "Directory to put files in", default: '/data/origin/www.transtats.bts.gov'
 Settings.define :local, flag: 'l', description: "Put downloaded files on local filesystem", default: false
 Settings.resolve!
 
@@ -17,7 +17,7 @@ def get_post_params(year,month,month_num)
 end
 
 def download(year,month,out_dir)
-  curl = "curl -L -d #{get_post_params(year,month,MONTHS.index(month)+1)} 'http://www.transtats.bts.gov/DownLoad_Table.asp?Table_ID=236&Has_Group=3&Is_Zipped=0'"
+  curl = "curl -L -d \"#{get_post_params(year,month,MONTHS.index(month)+1)}\" 'http://www.transtats.bts.gov/DownLoad_Table.asp?Table_ID=236&Has_Group=3&Is_Zipped=0'"
   out_file = "#{out_dir}/#{year}-#{month}.csv"
   cmd = "#{curl} | unzip -p"
   if Settings.local
