@@ -46,12 +46,13 @@ def download(year,month,out_dir)
 end
 
 def unzip(year,month,orig_dir,dest_dir)
-  puts "Unzipping and putting #{month} #{year} into place"
   zip_archive = "#{orig_dir}/#{year}-#{month}.zip"
+  dest_file = "#{dest_dir}/#{month}.csv"
+  puts "Unzipping #{zip_archive} into #{dest_file}"
   if Settings.local
-    `unzip -p #{zip_archive} > #{dest_dir}/#{month}.zip`
+    `unzip -p #{zip_archive} > #{dest_file}`
   else
-    `unzip -p #{zip_archive} | hadoop fs -put #{dest_dir}/#{month}.zip`
+    `unzip -p #{zip_archive} | hadoop fs -put - #{dest_file}`
   end
   `rm #{zip_archive}`
 end
