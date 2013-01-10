@@ -50,9 +50,9 @@ def unzip(year,month,orig_dir,dest_dir)
   dest_file = "#{dest_dir}/#{month}.csv"
   puts "Unzipping #{zip_archive} into #{dest_file}"
   if Settings.local
-    `unzip -p #{zip_archive} > #{dest_file}`
+    `unzip -p #{zip_archive} | tail -n +2 > #{dest_file}`
   else
-    `unzip -p #{zip_archive} | hadoop fs -put - #{dest_file}`
+    `unzip -p #{zip_archive} | tail -n +2 | hadoop fs -put - #{dest_file}`
   end
   `rm #{zip_archive}`
 end
