@@ -1,0 +1,2 @@
+./reorder_cols.rb --run --rm --reduce_tasks=20 /data/raw/bts_flights/full /data/scratch/bts_flights/reordered
+./fix_time.rb --run --rm /data/scratch/bts_flights/reordered /data/results/bts_flights/full

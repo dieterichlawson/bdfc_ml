@@ -3,22 +3,20 @@
 $:.unshift "/home/dlaw/dev/wukong_og/lib"
 $:.unshift "/home/dlaw/dev/gorillib/lib"
 
-load "/home/dlaw/delay/scripts/columns.rb"
+require '/home/dlaw/dev/bdfc_ml/munging/columns.rb'
 
 require 'wukong'
-require 'wukong/streamer/encoding_cleaner'
 require 'date'
 
 module ColumnReorderer
   class Mapper < Wukong::Streamer::RecordStreamer
-    include Wukong::Streamer::EncodingCleaner
     include Columns::Raw
 
     def process *line
       #remove cancelled and diverted flights
       return if line[CANCELLED].to_i == 1 or line[DIVERTED].to_i == 1
       result = []
-      # reorder the columns
+      # reorder the columns a bit
       result << line[YEAR..DAY_OF_WEEK]
       result << line[ORIGIN_AIRPORT..ORIGIN_FIPS] 
       result << line[DEST_AIRPORT]
