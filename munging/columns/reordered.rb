@@ -1,4 +1,4 @@
-require_relative './columns.rb'
+require_relative './base.rb'
 
 module Columns
   module Reordered
