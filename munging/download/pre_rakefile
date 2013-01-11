@@ -1,0 +1,1 @@
+./extract_flights.rb --run --rm /data/origin/www.transtats.bts.gov/*/* /data/raw/bts_flights/full

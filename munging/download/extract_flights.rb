@@ -19,6 +19,9 @@ module ExtractFlights
     def process *line
       line.each { |col| col.gsub!('"','') }
       yield line
+    rescue StandardError => e
+      $stderr.write "Error during process\n"
+      $stderr.write "line: #{line}"
     end
   end
 end
