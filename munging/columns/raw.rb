@@ -1,29 +1,25 @@
 require_relative './base.rb'
 
-module Columns
-  module Raw
-    extend ColumnBase
-    columns ({ 
-      year:               :category,
-      month:              :category,
-      day:                :category,
-      day_of_week:        :category,
-      carrier:            :category,
-      tail_num:           :category,
-      flight_num:         :category,
-      origin_airport:     :category,
-      origin_fips:        :category,
-      dest_airport:       :category,
-      sched_dep_time:     :time,
-      dep_delay:          :target,
-      dep_delay_15:       :target,
-      dep_delay_group:    :target,
-      sched_arr_time:     :time,
-      arr_delay:          :number,
-      cancelled:          :category,
-      diverted:           :category,
-      sched_elapsed_time: :time,
-      distance:           :number,
-    }) 
-  end
+Columns.define do
+  category 'year'
+  category 'month'
+  category 'day'
+  category 'day_of_week'
+  category 'carrier'
+  category 'tail_num'
+  category 'flight_num'
+  category 'origin_airport'
+  category 'origin_fips'
+  category 'dest_airport'
+  time     'sched_dep_time'
+  target   'dep_delay'
+  target   'dep_delay_15'
+  target   'dep_delay_group'
+  time     'sched_arr_time'
+  number   'arr_delay'
+  category 'cancelled'
+  category 'diverted'
+  time     'sched_arr_time'
+  number   'sched_elapsed_time'
+  number   'distance'
 end

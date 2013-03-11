@@ -1,0 +1,3 @@
+source 'http://rubygems.org'
+
+gem 'wukong', :path =>"#{ENV['HOME']}/dev/wukong_og"

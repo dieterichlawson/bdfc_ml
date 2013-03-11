@@ -1,4 +1,4 @@
-module ColumnDescriber
+module ColumnDescribers
   class DefaultMapper
   
     def initialize index,name,type

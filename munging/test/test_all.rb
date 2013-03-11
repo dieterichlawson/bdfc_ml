@@ -3,14 +3,13 @@
 load 'rowgen.rb'
 require_relative '../columns/final_single_city.rb'
 
-include Columns::FinalSingleCity
 
 N = 5000
 SPLITS = 5
 SPLIT_WIDTH = N/SPLITS
 
 puts 'Generating data...'
-rowgen = Munging::RowGenerator.new COL_TYPES
+rowgen = Munging::RowGenerator.new Columns.types
 rows = []
 (1..N).each do
   rows << rowgen.get_row

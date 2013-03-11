@@ -1,30 +1,43 @@
-module ColumnBase
-
-  def included klass
-    klass.const_set("COL_NAMES",col_names)
-    klass.const_set("COL_TYPES",col_types)
-    klass.const_set("COLS_BY_TYPE",cols_by_type)
+module Columns
+  def self.define &blk
+    module_eval &blk
   end
- 
-  def columns cols
-    cols.each do |name,type|
-      col_names << name.to_s
-      col_types << type
-      cols_by_type[type] ||= []
-      cols_by_type[type] << col_names.length - 1
-      const_set(name.to_s.upcase,col_names.length-1) 
+
+  def self.columns
+    @@columns ||= []
+  end
+
+  def self.num_columns
+    columns.size
+  end
+
+  def self.names
+    columns.collect{ |c| c.name }
+  end
+
+  def self.for_name name
+    columns.select{ |c| c.name == name }[0]
+  end
+
+  def self.types
+    columns.collect{ |c| c.type }
+  end
+
+  def self.define_column name, type, missing_vals=nil
+    columns << Column.new(name, type, num_columns, missing_vals)
+  end
+
+  def self.method_missing(method, *args, &block)
+    define_column args[0], method.to_sym, args[1]
+  end
+
+  class Column
+    attr_accessor :name, :type, :index, :missing_vals
+    def initialize name, type, index, missing_vals=nil
+      @name = name
+      @type = type
+      @index = index
+      @missing_vals = missing_vals
     end
-  end
-
-  def col_names
-    @col_names ||= []
-  end
-
-  def col_types
-    @col_types ||= []
-  end
-
-  def cols_by_type
-    @cols_by_type ||= {}
   end
 end
